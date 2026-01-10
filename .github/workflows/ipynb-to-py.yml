@@ -1,0 +1,45 @@
+name: Convert Jupyter Notebooks to Python
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.ipynb"
+  workflow_dispatch:
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Jupyter
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter nbconvert
+
+      - name: Create source folder
+        run: mkdir -p source
+
+      - name: Convert ipynb to py into source folder
+        run: |
+          find . -name "*.ipynb" \
+            -not -path "./.venv/*" \
+            -not -path "./source/*" \
+            -exec jupyter nbconvert --to python --output-dir=source {} \;
+
+      - name: Commit generated Python files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add source/
+          git commit -m "Auto-generate Python files from notebooks" || echo "No changes to commit"
+          git push

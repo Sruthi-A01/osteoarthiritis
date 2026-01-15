@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Market Intelligence Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+            background: radial-gradient(circle at top left, #1e3a8a, #020617);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e5e7eb;
+        }
+
+        .background-shape {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #2563eb, #22d3ee);
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .background-shape.one {
+            top: -200px;
+            left: -200px;
+        }
+
+        .background-shape.two {
+            bottom: -200px;
+            right: -200px;
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            width: 90%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 36px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        p.subtitle {
+            font-size: 17px;
+            color: #c7d2fe;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.15);
+            color: #93c5fd;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 15px;
+            color: #e5e7eb;
+        }
+
+        .feature svg {
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+            fill: #38bdf8;
+            flex-shrink: 0;
+        }
+
+        .upload-card {
+            background: rgba(2, 6, 23, 0.85);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .upload-card h3 {
+            margin-top: 0;
+            font-size: 22px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+
+        .upload-card p {
+            font-size: 14px;
+            color: #cbd5f5;
+            margin-bottom: 25px;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 25px auto;
+            color: #e5e7eb;
+        }
+
+        button {
+            background: linear-gradient(135deg, #2563eb, #22d3ee);
+            color: #020617;
+            border: none;
+            padding: 14px 34px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(56,189,248,0.4);
+        }
+
+        .error {
+            margin-top: 20px;
+            color: #fca5a5;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 13px;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-shape one"></div>
+    <div class="background-shape two"></div>
+
+    <div class="container">
+
+        <!-- LEFT CONTENT -->
+        <div>
+            <span class="badge">ML-Powered Healthcare Analytics</span>
+
+            <h1>Market Winner Identification Platform</h1>
+
+            <p class="subtitle">
+                Upload your healthcare market dataset and let machine learning
+                identify high-impact drugs, segments, and market opportunities
+                using advanced predictive models.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm4 4h2V7H7v10zm4-6h2v-2h-2v2zm4 4h2V5h-2v10zm4-2h2V9h-2v4z"/></svg>
+                    Structural feature engineering & market signals
+                </div>
+
+                <div class="feature">
+                    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
+                    Multi-model ML evaluation & optimization
+                </div>
+
+                <div class="feature">
+                    <svg viewBox="0 0 24 24"><path d="M3 3h18v2H3V3zm0 4h18v14H3V7zm4 4h4v4H7v-4z"/></svg>
+                    Confusion matrices & ROC curve dashboards
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT UPLOAD CARD -->
+        <div class="upload-card">
+            <h3>Upload Dataset</h3>
+            <p>Supported format: Excel (.xlsx)</p>
+
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".xlsx" required>
+                <button type="submit">Generate Dashboard</button>
+            </form>
+
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+
+            <div class="footer">
+                Flask • Scikit-Learn • XGBoost • CatBoost
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

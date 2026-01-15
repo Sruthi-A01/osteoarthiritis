@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model Dashboards</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+            background: radial-gradient(circle at top left, #1e3a8a, #020617);
+            color: #e5e7eb;
+        }
+
+        .background-shape {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #2563eb, #22d3ee);
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .background-shape.one {
+            top: -200px;
+            left: -200px;
+        }
+
+        .background-shape.two {
+            bottom: -200px;
+            right: -200px;
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 40px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.15);
+            color: #93c5fd;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 34px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        p.subtitle {
+            margin-top: 12px;
+            font-size: 16px;
+            color: #c7d2fe;
+            max-width: 900px;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
+            padding: 25px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 18px;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            background: #020617;
+            padding: 10px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 22px;
+            background: linear-gradient(135deg, #2563eb, #22d3ee);
+            color: #020617;
+            font-weight: 700;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(56,189,248,0.4);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-shape one"></div>
+    <div class="background-shape two"></div>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <span class="badge">Model Evaluation Results</span>
+            <h1>Machine Learning Performance Dashboard</h1>
+
+            <p class="subtitle">
+                Below are the evaluation dashboards generated after training multiple
+                machine learning models on your uploaded healthcare market dataset.
+                These visualizations help compare model behavior, recall performance,
+                and classification trade-offs.
+            </p>
+        </div>
+
+        <!-- PLOTS GRID -->
+        <div class="grid">
+            {% for img in plots %}
+                <div class="card">
+                    <h3>{{ img.replace("_", " ").replace(".png", "").title() }}</h3>
+                    <img src="{{ url_for('static', filename='plots/' + img) }}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            <a href="/" class="back-btn">← Upload Another Dataset</a>
+            <p style="margin-top: 20px;">
+                Flask • Scikit-Learn • XGBoost • CatBoost
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
